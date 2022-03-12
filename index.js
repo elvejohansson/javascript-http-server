@@ -4,7 +4,6 @@ import path from "path";
 
 const PORT = 8080;
 
-
 function sendError(code, req, res) {
   fs.readFile(`errors/${code}.html`, (error, content) => {
     if (error) {
@@ -15,7 +14,6 @@ function sendError(code, req, res) {
     res.end(content, "utf-8");
   });
 }
-
 
 // Create server object
 const server = http.createServer((request, response) => {
@@ -36,7 +34,9 @@ const server = http.createServer((request, response) => {
   // Check request extension and check against servers allowed MIME-types,
   // otherwise revert to application/octet-stream.
   const extName = String(path.extname(filePath)).toLowerCase();
-  let mimeTypes = JSON.parse(fs.readFileSync("types/mime-types.json").toString());
+  let mimeTypes = JSON.parse(
+    fs.readFileSync("types/mime-types.json").toString()
+  );
   const contentType = mimeTypes[extName] || "application/octet-stream";
 
   // Respond to client with file information.
@@ -46,15 +46,14 @@ const server = http.createServer((request, response) => {
       if (error.code === "ENOENT") {
         sendError(404, request, response);
       } else {
-        response.writeHead(500);
-        response.end("Contact site admin, error " + error.code);
+        sendError(500, request, response);
       }
     } else {
       response.writeHead(200, { "Content-Type": contentType });
       response.end(content, "utf-8");
     }
   });
-})
+});
 
 try {
   server.listen(PORT);
@@ -62,4 +61,3 @@ try {
 } catch (error) {
   console.error(`Error when starting server: ${error}`);
 }
-
