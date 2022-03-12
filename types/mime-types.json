@@ -1,0 +1,10 @@
+{
+  ".html": "text/html",
+  ".md": "text/markdown",
+
+  ".js": "text/javascript",
+  ".css": "text/css",
+
+  ".jpg": "image/jpg",
+  ".png": "image/png"
+}

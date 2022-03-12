@@ -1,0 +1,10 @@
+{
+  "name": "javascript-http-server",
+  "version": "0.0.0",
+  "main": "index.js",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ."
+  }
+}
