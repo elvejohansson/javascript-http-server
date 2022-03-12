@@ -30,7 +30,7 @@ const server = http.createServer((request, response) => {
   // Set filepath to index.html if it doesn't specify a file.
   let filePath = "." + request.url;
   if (filePath === "./") {
-    filePath = "public/index.html";
+    filePath = "index.html";
   }
 
   // Check request extension and check against servers allowed MIME-types,
