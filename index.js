@@ -18,7 +18,7 @@ function sendError(code, req, res) {
 // Create server object
 const server = http.createServer((request, response) => {
   // Log all requests
-  console.log(`${request.method} - URL: ${request.url}`);
+  console.log(`\x1b[32m${request.method}\x1b[0m - \x1b[34m${request.url}\x1b[0m\n\x1b[33m${request.headers["user-agent"]}\x1b[0m\n`);
 
   if (request.method !== "GET") {
     sendError(405, request, response);
