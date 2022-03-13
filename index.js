@@ -2,22 +2,13 @@ import http from "http";
 import fs from "fs";
 import path from "path";
 
+import { sendError } from "./utils/sendError.js";
+
 const PORT = 8080;
 
 // Controls if we want to serve only from public
 // folder or from entire working directory.
-let usePublic = false;
-
-function sendError(code, req, res) {
-  fs.readFile(`errors/${code}.html`, (error, content) => {
-    if (error) {
-      console.error(error);
-      return;
-    }
-    res.writeHead(code, { "Content-Type": "text/html" });
-    res.end(content, "utf-8");
-  });
-}
+let usePublic = true;
 
 // Create server object
 const server = http.createServer((request, response) => {
