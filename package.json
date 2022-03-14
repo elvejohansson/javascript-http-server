@@ -1,9 +1,21 @@
 {
   "name": "javascript-http-server",
+  "description": " 0 dependency HTTP server, build with Node and JavaScript.",
+  "author": {
+    "name": "Elve Johansson",
+    "email": "elve2002@live.se",
+    "url": "https://github.com/elvejohansson"
+  },
   "version": "0.0.0",
+  "license": "MIT",
   "main": "index.js",
   "type": "module",
-  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/elvejohansson/javascript-http-server"
+  },
+  "bugs": {
+    "url": "https://github.com/elvejohansson/javascript-http-server/issues"
+  },
   "scripts": {
     "start": "node ."
   }
