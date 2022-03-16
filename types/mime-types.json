@@ -1,10 +1,33 @@
 {
-  ".html": "text/html",
-  ".md": "text/markdown",
+  ".json": "application/json",
+  ".xml": "application/xml",
 
   ".js": "text/javascript",
-  ".css": "text/css",
+  ".mjs": "text/javascript",
 
-  ".jpg": "image/jpg",
-  ".png": "image/png"
+  ".webmanifest": "application/manifest+json",
+
+  ".mp3": "audio/mpeg",
+  ".wav": "audio/x-wav",
+  ".ico": "image/x-icon",
+  ".jpg": "image/jpeg",
+  ".jpeg":"image/jpeg",
+  ".png": "image/png",
+  ".gif": "image/gif",
+  ".svg": "image/svg+xml",
+  ".webm": "video/webm",
+  ".mp4": "video/mp4",
+
+  ".woff": "font/woff",
+  ".woff2": "font/woff2",
+  ".ttf": "font/ttf",
+  ".otf": "font/otf",
+
+  ".pdf": "application/pdf",
+  ".zip": "application/zip",
+  ".txt": "text/plain",
+  ".html": "text/html",
+  ".css": "text/css",
+  ".md": "text/markdown",
+  ".csv": "text/csv"
 }
