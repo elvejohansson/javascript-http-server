@@ -42,11 +42,16 @@ const server = http.createServer((request, response) => {
   // Respond to client with file information.
   fs.readFile(filePath, (error, content) => {
     if (error) {
-      // If "error no entity" (ENOENT), return 404 error.
-      if (error.code === "ENOENT") {
-        sendError(404, request, response);
-      } else {
-        sendError(500, request, response);
+      switch (error.code) {
+        case "ENOENT":
+          sendError(404, request, response);
+          break;
+        case "EACCES":
+          sendError(403, request, response);
+          break;
+        default:
+          sendError(500, request, response);
+          break;
       }
     } else {
       response.writeHead(200, { "Content-Type": contentType });
