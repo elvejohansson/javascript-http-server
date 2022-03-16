@@ -3,12 +3,7 @@ import fs from "fs";
 import path from "path";
 
 import { sendError } from "./utils/sendError.js";
-
-const PORT = 8080;
-
-// Controls if we want to serve only from public
-// folder or from entire working directory.
-let usePublic = true;
+import { PORT, PUBLIC } from "./config/server.config.js";
 
 // Create server object
 const server = http.createServer((request, response) => {
@@ -21,8 +16,8 @@ const server = http.createServer((request, response) => {
   }
 
   // Check if public folder is in use and make URL usable for server.
-  let filePath = "";
-  if (usePublic) {
+  let filePath;
+  if (PUBLIC) {
     if (request.url === "/") {
       filePath = "public/index.html";
     } else {
