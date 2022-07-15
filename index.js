@@ -5,10 +5,13 @@ import path from "path";
 import { sendError } from "./utils/sendError.js";
 import { PORT, PUBLIC } from "./config/server.config.js";
 
-// Create server object
 const server = http.createServer((request, response) => {
-  // Log all requests
-  console.log(`\x1b[32m${request.method}\x1b[0m - \x1b[34m${request.url}\x1b[0m\n\x1b[33m${request.headers["user-agent"]}\x1b[0m\n`);
+  handler(request, response);
+
+  const header = `\x1b[32m[${request.method}]\x1b[0m - \x1b[34m${request.url}\x1b[0m`;
+  const userAgent = `\x1b[33m${request.headers["user-agent"]}\x1b[0m\n`;
+
+  console.log(`${header}\n${userAgent}`);
 
   if (request.method !== "GET") {
     sendError(405, request, response);
@@ -18,11 +21,7 @@ const server = http.createServer((request, response) => {
   // Check if public folder is in use and make URL usable for server.
   let filePath;
   if (PUBLIC) {
-    if (request.url === "/") {
-      filePath = "public/index.html";
-    } else {
-      filePath = "public" + request.url;
-    }
+    filePath = request.url === "/" ? "public/index.html" : "public" + request.url;
   } else {
     if (request.url === "/") {
       filePath = "index.html";
@@ -65,4 +64,18 @@ try {
   console.log(`Server running and listening on http://localhost:${PORT}`);
 } catch (error) {
   console.error(`Error when starting server: ${error}`);
+}
+
+
+
+/**
+ * Middleware handler
+ */
+async function handler(req, res) {
+  if (req.method === "OPTIONS") {
+    res.writeHead(200, {
+      "Allow": "GET, POST, PUT, DELETE, OPTIONS",
+    });
+    res.end();
+  }
 }
